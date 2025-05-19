@@ -594,6 +594,7 @@ footer {
 
 footer small {
   color: var(--base);
+  line-height: 1;
 }
 
 footer .mini {
