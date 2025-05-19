@@ -1,0 +1,631 @@
+html {
+  font-size: 16px;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 色変数 */
+:root {
+  --base: #FEFAEF;
+  --main: #BB7A51;
+  --accent: #E4A45E;
+  --highlight: #5B3612;
+}
+
+/* 全体スタイル */
+body {
+  background-color: var(--base);
+  font-family: 'M PLUS 1p', sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* heroスタイル */
+.hero {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  height: 550px;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.hero::after {
+  z-index: 1;
+}
+
+.hero-text h1 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, var(--base), transparent);
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    height: 400px;
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .maintext-none {
+    display: none;
+  }
+}
+
+
+/* heroのキャンペーン文言 */
+.hero-badge {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(135deg, var(--accent), var(--main));
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Noto Serif JP', serif; /* 明朝系でも◎ */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+}
+
+.badge-title {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.badge-date {
+  font-size: 0.8rem;
+}
+
+/* ナビゲーションのスタイル */
+.nav-bar ul {
+  max-width: 1000px;
+  margin: 3em auto;
+  padding: 1.5em 1em;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-bar a {
+  font-family: 'Noto Serif JP', serif;
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.nav-bar .en {
+  font-size: 0.7em;
+}
+
+.nav-bar .ja {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-bar .ja::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-bar a:hover .ja::after {
+  width: 100%;
+}
+
+/* ハンバーガーメニュー */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  z-index: 1000;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--highlight);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.hamburger-wrap {
+  display: none; /* SPだけ表示 */
+  background-color: var(--base);
+  width: 100%;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (max-width: 768px) {
+  .nav-bar ul {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: var(--base);
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 3rem 1rem;
+    z-index: 9998;
+
+    /* アニメーション設定 */
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .nav-bar ul.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+  .hamburger-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .hamburger {
+    position: static;
+  }
+
+}
+
+
+
+/* ホッと落ち着く空間で美味しい朝ごはんを食べませんか？ */
+.catch {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 3em;
+  margin-bottom: 4em;
+  font-family: 'Noto Serif JP', serif;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  color: var(--highlight);
+  letter-spacing: 0.3em;
+  line-height: 2;
+}
+
+@media screen and (max-width: 768px) {
+  .catch {
+    margin: 2.5em 0;
+  }
+  .catch h2 {
+    font-size: 0.8em;
+  }
+}
+
+
+/* エリア別紹介 */
+
+.area h3 {
+  text-align: center;
+  font-size: 1.3em;
+  text-decoration: underline double 1.5px;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 6px;
+}
+
+.area img {
+  width: 100px;
+  height: 100%;
+}
+
+
+.area h3 {
+  margin-bottom: 2em;
+}
+
+.shop-card {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card-link {
+  width: 260px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5%;
+}
+
+.card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-link img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.shop-text h4 {
+  margin-top: 0.5em;
+}
+
+.shop-text p {
+  font-size: 0.7em;
+}
+
+.more-btn {
+  text-align: center;
+}
+
+.more-button {
+  all: unset;
+  display: inline-block;
+  margin-top: 2em;
+  margin-bottom: 4em;
+  background-color: var(--highlight);
+  padding: 1em 4em;
+  border-radius: 9999px;
+  color: #fff;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.more-button:hover {
+  background-color: var(--main);
+}
+
+
+/* マップ */
+
+.map {
+  background-color: var(--base);
+  padding: 4em 1em;
+  text-align: center;
+  background-color: #bb7a5140;
+}
+
+.map h2 {
+  font-size: 1.5rem;
+  font-family: 'Noto Serif JP', serif;
+  color: var(--highlight);
+  margin-bottom: 0.5em;
+}
+
+.map-sub {
+  font-size: 0.9rem;
+  color: var(--highlight);
+  opacity: 0.8;
+  margin-bottom: 2em;
+}
+
+.map iframe {
+  width: 800px;
+  height: 400px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.map-note {
+  font-size: 0.65rem;
+  color: #777;
+  text-align: center;
+  margin-top: 1em;
+  line-height: 1.6;
+}
+
+.map h2 i {
+  margin-right: 0.5em;
+  color: var(--accent);
+}
+
+@media screen and (max-width: 768px) {
+  .map-note {
+    font-size: 0.5rem;
+  }
+}
+
+/* インスタグラムキャンペーン */
+.campaign {
+  background-color: #fff;
+  margin: 4em auto;
+  max-width: 800px;
+  text-align: center;
+  padding: 2.5em 2em;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.campaign h3 {
+  font-size: 1.5rem;
+  font-family: 'Noto Serif JP', serif;
+  color: var(--highlight);
+  margin-bottom: 1em;
+}
+
+.hashtag {
+  font-weight: bold;
+  color: var(--highlight);
+  border-bottom: var(--accent) solid 4px;
+  padding: 0 0.5em;
+}
+
+.campaign p {
+  font-size: 0.8em;
+}
+
+.campaign h4 {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+.campaign-btn {
+  all: unset;
+  background-color: var(--highlight);
+  border-radius: 9999px;
+  color: #fff;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  transition: background-color 0.3s;
+}
+
+.campaign-btn:hover {
+  background-color: var(--main);
+}
+
+.campaign p.note {
+  font-size: 0.7em;
+  color: #999;
+  margin-top: 1em;
+  line-height: 1.4;
+}
+
+@media screen and (max-width: 768px) {
+  .campaign {
+    margin: 2.5em 1em;
+    padding: 2em 1.2em;
+  }
+  .campaign p {
+    font-size: 0.7rem;
+  }
+  .campaign br {
+    display: none;
+  }
+  .campaign h4 {
+    font-size: 0.8rem;
+  }
+  .campaign p.note {
+    font-size: 0.5rem;
+  }
+}
+
+/* 公式インスタグラム */
+
+.instagram {
+  text-align: center;
+  margin: 7em 0;
+}
+
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2em 1em;
+}
+
+.instagram img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instagram h2 {
+  font-size: 1.5rem;
+  font-family: 'Noto Serif JP', serif;
+  color: var(--highlight);
+  margin-bottom: 0.5em;
+}
+
+.instagram h2 i {
+  margin-right: 0.5em;
+  color: var(--accent);
+  font-size: 1.2em;
+}
+
+.insta-link-btn {
+  display: inline-block;
+  margin-top: 1em;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.7em 1.5em;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.insta-link-btn i {
+  margin-right: 0.5em;
+}
+
+.insta-link-btn:hover {
+  background-color: var(--main);
+}
+
+
+
+/* よくある質問 */
+.faq {
+  background-color: #bb7a5140;
+  text-align: center;
+  padding: 4em 0;
+}
+
+.faq h2 {
+  font-size: 1.5rem;
+  font-family: 'Noto Serif JP', serif;
+  color: var(--highlight);
+  margin-bottom: 0.5em;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0 1.5em;
+}
+
+.faq-list dt {
+  margin-top: 2em;
+  font-weight: bold;
+  color: var(--highlight);
+  position: relative;
+  padding-left: 2em;
+}
+
+.faq-list dt::before {
+  content: "Q.";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.faq-list dd {
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  padding: 1em;
+  background-color: #fff;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+footer {
+  background-color: var(--highlight);
+  height: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer small {
+  color: var(--base);
+}
+
+footer .mini {
+  font-size: 0.5rem;
+  opacity: 0.5;
+}
+
+.campaign-banner-vertical {
+  position: fixed;
+  top: 30%;
+  right: 0;
+  background-color: var(--accent);
+  color: #fff;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  writing-mode: vertical-rl; /* ← これで縦書き！ */
+  text-orientation: upright;
+  padding: 1em 0.6em;
+  border-radius: 12px 0 0 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.campaign-banner-vertical:hover {
+  background-color: var(--main);
+}
+
+@media screen and (max-width: 768px) {
+  .campaign-banner-vertical {
+    display: none;
+  }
+}
